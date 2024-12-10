@@ -1,9 +1,7 @@
 import Date_calendar from "../components/Date_calendar";
-import Date from "../components/Date_calendar";
 import Name from "../components/Name";
 import Photo from "../components/Photo";
-import Todolist from "../components/Todolist";
-import Weater from "../components/Weater";
+import Weater from "../components/Water/Weater";
 
 const Left = () => {
   return (
@@ -22,9 +20,8 @@ const Left = () => {
         <Name />
         <Photo />
       </div>
-      <Weater />
+      <Weater></Weater>
       <Date_calendar />
-      <Todolist />
     </div>
   );
 };

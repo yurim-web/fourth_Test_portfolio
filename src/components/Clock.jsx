@@ -13,7 +13,7 @@ const Clock = () => {
   const seconds = dateTime.getSeconds(); // 초
 
   return (
-    <div>
+    <div style={{ color: "white", fontSize: "150px", padding: "30px" }}>
       <span>
         {hours}:{minutes}:{seconds}
       </span>

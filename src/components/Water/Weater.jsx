@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Water from "./Water";
 import Weater_slide from "./Weater_slide";
+import Water from "./Water";
 
 const Weater = () => {
   const [water, setwater] = useState([false, false, false, false, false]);
@@ -22,6 +22,8 @@ const Weater = () => {
         borderRadius: "10px",
         display: "flex",
         flexDirection: "column",
+        padding: "30px 0px",
+        alignItems: "center",
       }}
     >
       <h1>WATER</h1>

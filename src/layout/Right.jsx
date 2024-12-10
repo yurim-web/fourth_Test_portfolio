@@ -1,9 +1,11 @@
 import Clock from "../components/Clock";
+import Todolist from "../components/todolist/Todolist";
 
 const Right = () => {
   return (
-    <div style={{ color: "white", fontSize: "200px" }}>
+    <div>
       <Clock />
+      <Todolist />
     </div>
   );
 };

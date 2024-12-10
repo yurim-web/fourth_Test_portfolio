@@ -1,3 +1,4 @@
+import { HomeIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
 const Name = () => {
@@ -22,17 +23,17 @@ const Name = () => {
         textAlign: "center",
       }}
     >
-      <div>
+      <div style={{ display: "flex", margin: "10px", alignItems: "center" }}>
         <input
           type="text"
+          style={{ border: "none" }}
           placeholder="이름 입력!"
-          style={{ margin: "20px" }}
           onChange={change}
         />
-        <button onClick={click}>설정</button>
+        <HomeIcon onClick={click}>설정</HomeIcon>
       </div>
 
-      <p>{displayname}</p>
+      <p>{displayname}님 환영합니다!</p>
     </div>
   );
 };

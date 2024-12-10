@@ -7,8 +7,12 @@ const Photo = () => {
         border: "1px solid black",
         flex: 1,
         borderRadius: "10px",
+        textAlign: "center",
+        padding: "20px 0px",
       }}
-    ></div>
+    >
+      <span style={{ color: "white", fontWeight: 700 }}>HELLO!</span>
+    </div>
   );
 };
 
