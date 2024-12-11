@@ -1,39 +1,41 @@
-import { HomeIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
+import { MdOutlineLogin } from "react-icons/md";
+import { useState, useEffect } from "react";
+import { name_Css } from "../styles/name_Css";
 
 const Name = () => {
   const [name, setname] = useState("");
-  const [displayname, setdisplayname] = useState("");
+  const [displayname, setdisplayname] = useState("YOUR NAME");
+
+  useEffect(() => {
+    const savedDisplayName = localStorage.getItem("displayname");
+    if (savedDisplayName) {
+      setdisplayname(savedDisplayName);
+    }
+  }, []);
 
   const change = (e) => {
     setname(e.target.value);
   };
+
   const click = () => {
     setdisplayname(name);
+    localStorage.setItem("displayname", name);
   };
 
   return (
-    <div
-      style={{
-        height: "200px",
-        backgroundColor: "white",
-        border: "1px solid black",
-        flex: 1,
-        borderRadius: "10px",
-        textAlign: "center",
-      }}
-    >
-      <div style={{ display: "flex", margin: "10px", alignItems: "center" }}>
-        <input
-          type="text"
-          style={{ border: "none" }}
-          placeholder="이름 입력!"
-          onChange={change}
-        />
-        <HomeIcon onClick={click}>설정</HomeIcon>
+    <div style={name_Css.name_box}>
+      <div style={name_Css.name_innerbox}>
+        <div style={name_Css.name_innerbox2}>
+          <input
+            type="text"
+            style={name_Css.input}
+            placeholder="이름을 입력하세요"
+            onChange={change}
+          />
+          <MdOutlineLogin onClick={click}>설정</MdOutlineLogin>
+        </div>
+        <h1 style={name_Css.name_title}>{displayname}</h1>
       </div>
-
-      <p>{displayname}님 환영합니다!</p>
     </div>
   );
 };

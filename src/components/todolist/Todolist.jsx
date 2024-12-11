@@ -1,10 +1,11 @@
-import { TrashIcon } from "@radix-ui/react-icons";
 import { Button } from "@radix-ui/themes";
-import { useState } from "react";
-import { styleCss } from "./styleCss";
+import { useState, useEffect } from "react";
+import { IoTrashOutline } from "react-icons/io5";
+import { todo_Css } from "../../styles/todo_Css";
 
 const Todolist = () => {
   const [input, setInput] = useState("");
+
   const change = (e) => {
     const value = e.target.value;
     if (value.trim() !== "") {
@@ -12,57 +13,74 @@ const Todolist = () => {
     }
   };
 
-  const [push, setPush] = useState([]);
+  const [push, setPush] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  const saveToLocalStorage = (tasks) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
   const click = () => {
     if (input.trim() !== "") {
-      setPush((prev) => [...prev, { valuetext: input, checked: false }]);
+      const newTask = { valuetext: input, checked: false };
+      const updatedTasks = [...push, newTask];
+      setPush(updatedTasks);
+      saveToLocalStorage(updatedTasks);
       setInput("");
     }
   };
 
   const remove = (i) => {
-    setPush((prev) => [...prev].filter((v, idx) => idx != i));
+    const updatedTasks = push.filter((v, idx) => idx !== i);
+    setPush(updatedTasks);
+    saveToLocalStorage(updatedTasks);
   };
 
   const toggleCheck = (i) => {
-    setPush((prev) =>
-      prev.map((item, idx) =>
-        idx === i ? { ...item, checked: !item.checked } : item
-      )
+    const updatedTasks = push.map((item, idx) =>
+      idx === i ? { ...item, checked: !item.checked } : item
     );
+    setPush(updatedTasks);
+    saveToLocalStorage(updatedTasks);
   };
 
   return (
-    <div className="App" style={styleCss.boxCss}>
-      <h1 style={styleCss.titleCss}>TO-DO LIST</h1>
-      <section style={styleCss.inputBox}>
+    <div className="App" style={todo_Css.boxCss}>
+      <h1 style={todo_Css.titleCss}>TO-DO LIST</h1>
+      <section style={todo_Css.inputBox}>
         <input
-          style={styleCss.inputCss}
+          style={todo_Css.inputCss}
           type="text"
-          placeholder="Add a o new task..."
+          placeholder="Add a new task..."
           onChange={change}
+          value={input}
         />
-
-        <Button style={styleCss.btnCss} onClick={click} variant="solid">
+        <Button style={todo_Css.btnCss} onClick={click} variant="solid">
           ADD
         </Button>
       </section>
 
-      <section style={styleCss.todoBox}>
+      <section style={todo_Css.todoBox}>
         {push.map((v, i) => (
-          <div key={i} style={styleCss.todoCss}>
+          <div key={i} style={todo_Css.todoCss}>
             <button onClick={() => toggleCheck(i)}>
               {v.checked ? "완료" : "미완료"}
             </button>
             <span
-              style={{ textDecoration: v.checked ? "line-through" : "none" }}
+              style={{
+                textDecoration: v.checked ? "line-through" : "none",
+                color: v.checked ? "red" : "black",
+              }}
             >
               {v.valuetext}
             </span>
-            <TrashIcon
-              style={styleCss.iconCss}
+
+            <IoTrashOutline
+              style={todo_Css.iconCss}
               onClick={() => remove(i)}
-            ></TrashIcon>
+            />
           </div>
         ))}
       </section>

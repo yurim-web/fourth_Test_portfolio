@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
+import { etc_Css } from "../styles/etc_Css";
 
 const Clock = () => {
   const [dateTime, setDateTime] = useState(new Date());
   useEffect(() => {
     const timer = setInterval(() => {
       setDateTime(new Date());
-    }, 1000); // 1초마다 현재 시간 업데이트
+    }, 1000);
   }, []);
 
-  const hours = dateTime.getHours(); // 시간 (24시간제)
-  const minutes = dateTime.getMinutes(); // 분
-  const seconds = dateTime.getSeconds(); // 초
+  const hours = dateTime.getHours();
+  const minutes = dateTime.getMinutes();
+  const seconds = dateTime.getSeconds();
 
   return (
-    <div style={{ color: "white", fontSize: "150px", padding: "30px" }}>
+    <div style={etc_Css.clock}>
       <span>
         {hours}:{minutes}:{seconds}
       </span>

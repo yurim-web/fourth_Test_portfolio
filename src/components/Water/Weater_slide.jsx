@@ -1,13 +1,8 @@
+import { water_Css } from "../../styles/water_Css";
+
 const Weater_slide = (props) => {
   return (
-    <div
-      style={{
-        border: "1px solid black",
-        width: "300px",
-        padding: "10px",
-        position: "relative",
-      }}
-    >
+    <div style={water_Css.slide_box}>
       <span
         style={{
           transition: "all 0.3s",
@@ -16,7 +11,7 @@ const Weater_slide = (props) => {
           top: 0,
         }}
       >
-        💛
+        💧
       </span>
     </div>
   );

@@ -1,11 +1,12 @@
 import Clock from "../components/Clock";
-import Todolist from "../components/todolist/Todolist";
+import Weather_information from "../components/Weather_information";
+import { etc_Css } from "../styles/etc_Css";
 
 const Right = () => {
   return (
-    <div>
+    <div style={etc_Css.right_box}>
       <Clock />
-      <Todolist />
+      <Weather_information />
     </div>
   );
 };
